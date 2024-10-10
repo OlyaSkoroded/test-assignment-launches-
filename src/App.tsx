@@ -1,5 +1,7 @@
+import { LaunchesList } from './features';
+
 const App = () => {
-  return <></>;
+  return <LaunchesList />;
 };
 
 export default App;

@@ -1,0 +1,12 @@
+schema: "https://spacex-production.up.railway.app/" # Replace with your actual GraphQL schema URL or path to a local schema file
+documents: ['src/**/*.ts'] # Where your .graphql files (queries/mutations) are located
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
