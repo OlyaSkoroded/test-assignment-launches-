@@ -1340,6 +1340,7 @@ export type Uuid_Comparison_Exp = {
 
 export type GetLaunchesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
@@ -1347,8 +1348,8 @@ export type GetLaunchesQuery = { __typename?: 'Query', launches?: Array<{ __type
 
 
 export const GetLaunchesDocument = gql`
-    query GetLaunches($limit: Int) {
-  launches(limit: $limit) {
+    query GetLaunches($limit: Int, $offset: Int) {
+  launches(limit: $limit, offset: $offset) {
     id
     launch_date_utc
     launch_success
@@ -1385,6 +1386,7 @@ export const GetLaunchesDocument = gql`
  * const { data, loading, error } = useGetLaunchesQuery({
  *   variables: {
  *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
  *   },
  * });
  */
