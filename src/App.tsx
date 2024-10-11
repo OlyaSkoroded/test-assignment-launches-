@@ -21,7 +21,7 @@ const App = () => {
   };
 
   return (
-    <Stack direction='row' maxWidth={1200} justifyContent='center' marginX='auto'>
+    <Stack direction='row' maxWidth={1200} justifyContent='center' marginX='auto' gap={2}>
       <LaunchesList onToggle={handleToggle} selectedLaunches={selectedLaunches} />
       <Box sx={{ maxWidth: '40%', width: '100%', flexShrink: 1, height: '300px', position: 'sticky', top: 24 }}>
         <EnergyConsumption launches={selectedLaunches} onToggle={handleToggle} />

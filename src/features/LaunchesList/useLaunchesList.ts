@@ -16,12 +16,21 @@ export const useLaunchesList = () => {
 
   const handleNextButtonClick = () => {
     setOffset((prevOffset) => prevOffset + PAGE_SIZE);
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const handlePrevButtonClick = () => {
     if (offset === 0) return;
 
     setOffset((prevOffset) => prevOffset - PAGE_SIZE);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return {
