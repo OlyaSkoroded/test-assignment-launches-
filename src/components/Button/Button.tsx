@@ -4,7 +4,7 @@ import * as S from './style';
 
 export type ButtonProps = {
   size?: 'small' | 'medium' | 'big';
-  variant?: 'primary' | 'secondary' | 'icon' | 'text';
+  variant?: 'primary' | 'secondary';
   fullWidth?: boolean;
 } & ButtonBaseProps;
 
