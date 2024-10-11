@@ -3,7 +3,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Button,
   Card,
   CardContent,
   List,
@@ -14,6 +13,7 @@ import {
 
 import { useEnergyConsumption } from './useEnergyConsumption';
 
+import { Button } from '@/components/Button';
 import { Launch } from '@/generated/graphql';
 
 type Props = {
@@ -62,7 +62,7 @@ export const EnergyConsumption: React.FC<Props> = ({ launches, onToggle }) => {
                               <Typography>{mission_name}</Typography>
                             )}
 
-                            <Button size='small' onClick={() => onToggle(launch)}>
+                            <Button size='small' onClick={() => onToggle(launch)} variant='secondary'>
                               Remove
                             </Button>
                           </Stack>
@@ -91,7 +91,7 @@ export const EnergyConsumption: React.FC<Props> = ({ launches, onToggle }) => {
               </AccordionDetails>
             </Accordion>
           )}
-          <Button onClick={onCalculateClick} disabled={launches.length === 0} sx={{ mt: 2 }}>
+          <Button onClick={onCalculateClick} disabled={launches.length === 0} sx={{ mt: 2, alignSelf: 'center' }}>
             Calculate
           </Button>
           {calculatedEnergy !== 0n && (

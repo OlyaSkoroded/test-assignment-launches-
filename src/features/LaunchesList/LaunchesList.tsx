@@ -1,8 +1,9 @@
-import { Box, Button, Checkbox, Stack, Card, CardContent, List, ListItem, Typography } from '@mui/material';
+import { Box, Checkbox, Stack, Card, CardContent, List, ListItem, Typography } from '@mui/material';
 
 import { LaunchesListSkeleton } from './LaunchesListSkeleton';
 import { useLaunchesList } from './useLaunchesList';
 
+import { Button } from '@/components/Button';
 import { Launch } from '@/generated/graphql';
 import { isValidDate } from '@/helpers/isValidDate';
 
@@ -28,7 +29,7 @@ export const LaunchesList: React.FC<Props> = ({ selectedLaunches, onToggle }) =>
           const checked = selectedLaunches.find((elem) => elem.id === id);
 
           return (
-            <ListItem key={id} sx={{ minWidth: 275, width: '100%' }}>
+            <ListItem key={id} sx={{ minWidth: 275, width: '100%', px: 0 }}>
               <Card sx={{ width: '100%' }}>
                 <CardContent>
                   <Stack direction='row' alignItems='flex-start' justifyContent='space-between'>
