@@ -1,19 +1,31 @@
-import { Card, Stack, Typography } from '@mui/material';
+import { Box, Stack } from '@mui/material';
+import { useState } from 'react';
 
-import { LaunchesList } from './features';
+import { EnergyConsumption, LaunchesList } from './features';
+import { Launch } from './generated/graphql';
 
 const App = () => {
+  const [selectedLaunches, setSelectedLaunches] = useState<Launch[]>([]);
+
+  const handleToggle = (newElem: Launch) => {
+    const currentIndex = selectedLaunches.findIndex((elem) => elem.id === newElem.id);
+    const newSelectedLaunches = [...selectedLaunches];
+
+    if (currentIndex === -1) {
+      newSelectedLaunches.push(newElem);
+    } else {
+      newSelectedLaunches.splice(currentIndex, 1);
+    }
+
+    setSelectedLaunches(newSelectedLaunches);
+  };
+
   return (
-    <Stack direction='row'>
-      <LaunchesList />
-      <Card sx={{ minWidth: '30%', flexShrink: 1, height: '300px', position: 'sticky', top: 24 }}>
-        <Stack alignContent='center' justifyContent='center' textAlign='center' sx={{ height: '100%', width: '100%' }}>
-          <Typography variant='h5'>Energy consumption</Typography>
-          <Typography variant='body1'>
-            To calculate estimated energy consumption, please select at least one launch from the list.
-          </Typography>
-        </Stack>
-      </Card>
+    <Stack direction='row' maxWidth={1200} justifyContent='center' marginX='auto'>
+      <LaunchesList onToggle={handleToggle} selectedLaunches={selectedLaunches} />
+      <Box sx={{ maxWidth: '40%', width: '100%', flexShrink: 1, height: '300px', position: 'sticky', top: 24 }}>
+        <EnergyConsumption launches={selectedLaunches} onToggle={handleToggle} />
+      </Box>
     </Stack>
   );
 };

@@ -3,9 +3,15 @@ import { Box, Button, Checkbox, Stack, Card, CardContent, List, ListItem, Typogr
 import { LaunchesListSkeleton } from './LaunchesListSkeleton';
 import { useLaunchesList } from './useLaunchesList';
 
+import { Launch } from '@/generated/graphql';
 import { isValidDate } from '@/helpers/isValidDate';
 
-export const LaunchesList = () => {
+type Props = {
+  selectedLaunches: Launch[];
+  onToggle: (launch: Launch) => void;
+};
+
+export const LaunchesList: React.FC<Props> = ({ selectedLaunches, onToggle }) => {
   const { launches, loading, offset, onNextClick, onPrevClick } = useLaunchesList();
 
   if (loading) {
@@ -19,6 +25,7 @@ export const LaunchesList = () => {
           const { launch_date_utc, id, mission_name, details, links, rocket } = launch;
           const date = new Date(launch_date_utc);
           const dateString = isValidDate(date) ? date.toLocaleDateString() : '';
+          const checked = selectedLaunches.find((elem) => elem.id === id);
 
           return (
             <ListItem key={id} sx={{ minWidth: 275, width: '100%' }}>
@@ -38,7 +45,7 @@ export const LaunchesList = () => {
                     ) : (
                       <Typography variant='h5'>{mission_name}</Typography>
                     )}
-                    <Checkbox edge='end' />
+                    <Checkbox edge='end' onChange={() => onToggle(launch)} checked={!!checked} />
                   </Stack>
 
                   {dateString && <Typography variant='body2'>{dateString}</Typography>}
